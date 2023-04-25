@@ -12,12 +12,14 @@ const String errorMockString = "Error";
 class MockUserRepositoryImpl implements UserRepository {
   @override
   Future<Either<Failure, User>> getUserInfo(String id) {
-    return Future.value(const Right(User(idMockString, nameMockString, emailMockString)));
+    return Future.value(
+        const Right(User(idMockString, nameMockString, emailMockString)));
   }
 
   @override
   Future<Either<Failure, User>> saveUserInfo(User user) {
-    return Future.value(const Right(User(idMockString, nameMockString, emailMockString)));
+    return Future.value(
+        const Right(User(idMockString, nameMockString, emailMockString)));
   }
 }
 

@@ -26,12 +26,14 @@ class RemoteDataSourceUserMock implements RemoteUserDataSource {
 class RemoteDataSourceUserMockFailureNetwork implements RemoteUserDataSource {
   @override
   Future<User> getUserInfo(String id) async {
-    return Future.error(DioError(requestOptions: RequestOptions(baseUrl: _baseUrl), error: errorString));
+    return Future.error(DioError(
+        requestOptions: RequestOptions(baseUrl: _baseUrl), error: errorString));
   }
 
   @override
   Future<User> saveUserInfo(User user) async {
-    return Future.error(DioError(requestOptions: RequestOptions(baseUrl: _baseUrl), error: errorString));
+    return Future.error(DioError(
+        requestOptions: RequestOptions(baseUrl: _baseUrl), error: errorString));
   }
 }
 

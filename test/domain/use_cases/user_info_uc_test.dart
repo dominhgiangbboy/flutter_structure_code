@@ -17,7 +17,8 @@ void main() {
 
     /// Test use case
     getUserInfo(idMockString).then((value) {
-      expect((value as Right).value, const User(idMockString, nameMockString, emailMockString));
+      expect((value as Right).value,
+          const User(idMockString, nameMockString, emailMockString));
     });
   });
 

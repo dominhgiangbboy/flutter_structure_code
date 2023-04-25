@@ -49,48 +49,206 @@ void main() {
   final RequestOptions requestOptions = RequestOptions(path: _endPoint);
   DioError dioError = DioError(
     requestOptions: requestOptions,
-    response: Response(statusCode: 500, data: _errorReturn, requestOptions: requestOptions),
+    response: Response(
+        statusCode: 500, data: _errorReturn, requestOptions: requestOptions),
   );
-  test('dio_client_test: Test dio client post method success', () async {
-    dioAdapter.onPost(_endPoint, (server) {
-      return server.reply(200, _body);
-    }, data: _body);
-    final Either<UserModel, Failure> result = await dioClient.post(_endPoint, data: _body, decode: (p0) => UserModel.fromJson(p0));
-    expect(result.getLeft(), _testUser);
+  group("dio_client_test: Post", () {
+    test('Success model', () async {
+      dioAdapter.onPost(_endPoint, (server) {
+        return server.reply(200, _body);
+      }, data: _body);
+      final Either<UserModel, Failure> result = await dioClient.post(_endPoint,
+          data: _body, decode: (p0) => UserModel.fromJson(p0));
+      expect(result.getLeft(), _testUser);
+    });
+
+    test("Failure from client", () async {
+      dioAdapter.onPost(_endPoint, (server) {
+        return server.throws(500, dioError);
+      }, data: _bodyError);
+      final Either<UserModel, Failure> result = await dioClient.post(_endPoint,
+          data: _body, decode: (p0) => UserModel.fromJson(p0));
+      expect(
+        result.getRight(),
+        ServerFailure(message: dioError.message.toString()),
+      );
+    });
+
+    test("Model convert function test failure", () async {
+      dioAdapter.onPost(_endPoint, (server) {
+        return server.reply(200, _bodyMissingData);
+      }, data: _body);
+
+      final Either<UserModel, Failure> result = await dioClient.post(_endPoint,
+          data: _body, decode: (p0) => UserModel.fromJson(p0));
+      expect(
+        result.getRight(),
+        ModelFailure(message: dataIsNullExeptionMsg),
+      );
+    });
+
+    test("Model convert function fail data", () async {
+      dioAdapter.onPost(_endPoint, (server) {
+        return server.reply(200, _bodyWrongFormat);
+      }, data: _body);
+
+      final Either<UserModel, Failure> result = await dioClient.post(_endPoint,
+          data: _body, decode: (p0) => UserModel.fromJson(p0));
+      expect(
+        result.getRight(),
+        ModelFailure(message: parsingDataExceptionMsg),
+      );
+    });
   });
 
-  test("dio_client_test: Test dio client post method failed from server", () async {
-    dioAdapter.onPost(_endPoint, (server) {
-      return server.throws(500, dioError);
-    }, data: _bodyError);
-    final Either<UserModel, Failure> result = await dioClient.post(_endPoint, data: _body, decode: (p0) => UserModel.fromJson(p0));
-    expect(
-      result.getRight(),
-      ServerFailure(message: dioError.message.toString()),
-    );
+  group("dio_client_test: Get", () {
+    test('Success model', () async {
+      dioAdapter.onGet(_endPoint, (server) {
+        return server.reply(200, _body);
+      }, queryParameters: _body);
+      final Either<UserModel, Failure> result = await dioClient.get(_endPoint,
+          params: _body, decode: (p0) => UserModel.fromJson(p0));
+      expect(result.getLeft(), _testUser);
+    });
+
+    test("Failure from server", () async {
+      dioAdapter.onGet(_endPoint, (server) {
+        return server.throws(500, dioError);
+      }, queryParameters: _body);
+      final Either<UserModel, Failure> result = await dioClient.get(_endPoint,
+          params: _body, decode: (p0) => UserModel.fromJson(p0));
+      expect(
+        result.getRight(),
+        ServerFailure(message: dioError.message.toString()),
+      );
+    });
+
+    test("Model convert function test failure", () async {
+      dioAdapter.onGet(_endPoint, (server) {
+        return server.reply(200, _bodyMissingData);
+      }, queryParameters: _body);
+
+      final Either<UserModel, Failure> result = await dioClient.get(_endPoint,
+          params: _body, decode: (p0) => UserModel.fromJson(p0));
+      expect(
+        result.getRight(),
+        ModelFailure(message: dataIsNullExeptionMsg),
+      );
+    });
+
+    test("Model convert function fail data", () async {
+      dioAdapter.onGet(_endPoint, (server) {
+        return server.reply(200, _bodyWrongFormat);
+      }, queryParameters: _body);
+      final Either<UserModel, Failure> result = await dioClient.get(_endPoint,
+          params: _body, decode: (p0) => UserModel.fromJson(p0));
+      expect(
+        result.getRight(),
+        ModelFailure(message: parsingDataExceptionMsg),
+      );
+    });
   });
 
-  test("dio_client_test: Model convert function test failure", () async {
-    dioAdapter.onPost(_endPoint, (server) {
-      return server.reply(200, _bodyMissingData);
-    }, data: _body);
+  group("dio_client_test: Put", () {
+    test('Success model', () async {
+      dioAdapter.onPut(_endPoint, (server) {
+        return server.reply(200, _body);
+      }, queryParameters: _body);
+      final Either<UserModel, Failure> result = await dioClient.put(_endPoint,
+          params: _body, decode: (p0) => UserModel.fromJson(p0));
+      expect(result.getLeft(), _testUser);
+    });
 
-    final Either<UserModel, Failure> result = await dioClient.post(_endPoint, data: _body, decode: (p0) => UserModel.fromJson(p0));
-    expect(
-      result.getRight(),
-      ModelFailure(message: dataIsNullExeptionMsg),
-    );
+    test("Failure from server", () async {
+      dioAdapter.onPut(_endPoint, (server) {
+        return server.throws(500, dioError);
+      }, queryParameters: _body);
+      final Either<UserModel, Failure> result = await dioClient.put(_endPoint,
+          params: _body, decode: (p0) => UserModel.fromJson(p0));
+      expect(
+        result.getRight(),
+        ServerFailure(message: dioError.message.toString()),
+      );
+    });
+
+    test("Model convert function test failure", () async {
+      dioAdapter.onPut(_endPoint, (server) {
+        return server.reply(200, _bodyMissingData);
+      }, queryParameters: _body);
+
+      final Either<UserModel, Failure> result = await dioClient.put(_endPoint,
+          params: _body, decode: (p0) => UserModel.fromJson(p0));
+      expect(
+        result.getRight(),
+        ModelFailure(message: dataIsNullExeptionMsg),
+      );
+    });
+
+    test("Model convert function fail data", () async {
+      dioAdapter.onPut(_endPoint, (server) {
+        return server.reply(200, _bodyWrongFormat);
+      }, queryParameters: _body);
+      final Either<UserModel, Failure> result = await dioClient.put(_endPoint,
+          params: _body, decode: (p0) => UserModel.fromJson(p0));
+      expect(
+        result.getRight(),
+        ModelFailure(message: parsingDataExceptionMsg),
+      );
+    });
   });
+  group("dio_client_test: Delete", () {
+    test('Success model', () async {
+      dioAdapter.onDelete(_endPoint, (server) {
+        return server.reply(200, _body);
+      }, queryParameters: _body);
+      final Either<UserModel, Failure> result = await dioClient.delete(
+          _endPoint,
+          params: _body,
+          decode: (p0) => UserModel.fromJson(p0));
+      expect(result.getLeft(), _testUser);
+    });
 
-  test("dio_client_test: Model convert function fail data", () async {
-    dioAdapter.onPost(_endPoint, (server) {
-      return server.reply(200, _bodyWrongFormat);
-    }, data: _body);
+    test("Failure from server", () async {
+      dioAdapter.onDelete(_endPoint, (server) {
+        return server.throws(500, dioError);
+      }, queryParameters: _body);
+      final Either<UserModel, Failure> result = await dioClient.delete(
+          _endPoint,
+          params: _body,
+          decode: (p0) => UserModel.fromJson(p0));
+      expect(
+        result.getRight(),
+        ServerFailure(message: dioError.message.toString()),
+      );
+    });
 
-    final Either<UserModel, Failure> result = await dioClient.post(_endPoint, data: _body, decode: (p0) => UserModel.fromJson(p0));
-    expect(
-      result.getRight(),
-      ModelFailure(message: parsingDataExceptionMsg),
-    );
+    test("Model convert function test failure", () async {
+      dioAdapter.onDelete(_endPoint, (server) {
+        return server.reply(200, _bodyMissingData);
+      }, queryParameters: _body);
+
+      final Either<UserModel, Failure> result = await dioClient.delete(
+          _endPoint,
+          params: _body,
+          decode: (p0) => UserModel.fromJson(p0));
+      expect(
+        result.getRight(),
+        ModelFailure(message: dataIsNullExeptionMsg),
+      );
+    });
+
+    test("Model convert function fail data", () async {
+      dioAdapter.onDelete(_endPoint, (server) {
+        return server.reply(200, _bodyWrongFormat);
+      }, queryParameters: _body);
+      final Either<UserModel, Failure> result = await dioClient.delete(
+          _endPoint,
+          params: _body,
+          decode: (p0) => UserModel.fromJson(p0));
+      expect(
+        result.getRight(),
+        ModelFailure(message: parsingDataExceptionMsg),
+      );
+    });
   });
 }
