@@ -3,9 +3,11 @@ class BaseResponseApi<T> {
   final String message;
   final T data;
 
-  BaseResponseApi({required this.code, required this.message, required this.data});
+  BaseResponseApi(
+      {required this.code, required this.message, required this.data});
 
-  factory BaseResponseApi.fromJson(Map<String, dynamic> json, dynamic Function(Map<String, dynamic> json) decode) {
+  factory BaseResponseApi.fromJson(Map<String, dynamic> json,
+      dynamic Function(Map<String, dynamic> json) decode) {
     try {
       if (json['data'] == null) {
         throw Exception(dataIsNullExeptionMsg);
