@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter_default_structure/core/error_handler/failure_case.dart';
-import 'package:flutter_default_structure/data/data_source/user_remote_data_source.dart';
-import 'package:flutter_default_structure/domain/entities/user_entity.dart';
-import 'package:flutter_default_structure/domain/repository/user_repository.dart';
+import 'package:seltle_app/core/error_handler/failure_case.dart';
+import 'package:seltle_app/data/data_source/user_remote_data_source.dart';
+import 'package:seltle_app/domain/entities/user_entity.dart';
+import 'package:seltle_app/domain/repository/user_repository.dart';
 
 class UserRepositoryImpl implements UserRepository {
   UserRepositoryImpl(this._remoteUserDataSource);

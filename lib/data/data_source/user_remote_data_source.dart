@@ -1,4 +1,4 @@
-import 'package:flutter_default_structure/core/api_client/restful_client.dart';
+import 'package:seltle_app/core/api_client/restful_client.dart';
 
 import '../../domain/entities/user_entity.dart';
 

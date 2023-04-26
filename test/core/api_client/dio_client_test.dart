@@ -1,12 +1,12 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter_default_structure/core/api_client/dio_client.dart';
-import 'package:flutter_default_structure/core/api_client/restful_client.dart';
-import 'package:flutter_default_structure/core/base_models/base_response_api.dart';
-import 'package:flutter_default_structure/core/env/app_env.dart';
-import 'package:flutter_default_structure/core/error_handler/failure_case.dart';
-import 'package:flutter_default_structure/core/extension/util_extension.dart';
-import 'package:flutter_default_structure/models/user_model.dart';
+import 'package:seltle_app/core/api_client/dio_client.dart';
+import 'package:seltle_app/core/api_client/restful_client.dart';
+import 'package:seltle_app/core/base_models/base_response_api.dart';
+import 'package:seltle_app/core/env/app_env.dart';
+import 'package:seltle_app/core/error_handler/failure_case.dart';
+import 'package:seltle_app/core/extension/util_extension.dart';
+import 'package:seltle_app/models/user_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
 import 'package:mockito/annotations.dart';
@@ -49,16 +49,14 @@ void main() {
   final RequestOptions requestOptions = RequestOptions(path: _endPoint);
   DioError dioError = DioError(
     requestOptions: requestOptions,
-    response: Response(
-        statusCode: 500, data: _errorReturn, requestOptions: requestOptions),
+    response: Response(statusCode: 500, data: _errorReturn, requestOptions: requestOptions),
   );
   group("dio_client_test: Post", () {
     test('Success model', () async {
       dioAdapter.onPost(_endPoint, (server) {
         return server.reply(200, _body);
       }, data: _body);
-      final Either<UserModel, Failure> result = await dioClient.post(_endPoint,
-          data: _body, decode: (p0) => UserModel.fromJson(p0));
+      final Either<UserModel, Failure> result = await dioClient.post(_endPoint, data: _body, decode: (p0) => UserModel.fromJson(p0));
       expect(result.getLeft(), _testUser);
     });
 
@@ -66,8 +64,7 @@ void main() {
       dioAdapter.onPost(_endPoint, (server) {
         return server.throws(500, dioError);
       }, data: _bodyError);
-      final Either<UserModel, Failure> result = await dioClient.post(_endPoint,
-          data: _body, decode: (p0) => UserModel.fromJson(p0));
+      final Either<UserModel, Failure> result = await dioClient.post(_endPoint, data: _body, decode: (p0) => UserModel.fromJson(p0));
       expect(
         result.getRight(),
         ServerFailure(message: dioError.message.toString()),
@@ -79,8 +76,7 @@ void main() {
         return server.reply(200, _bodyMissingData);
       }, data: _body);
 
-      final Either<UserModel, Failure> result = await dioClient.post(_endPoint,
-          data: _body, decode: (p0) => UserModel.fromJson(p0));
+      final Either<UserModel, Failure> result = await dioClient.post(_endPoint, data: _body, decode: (p0) => UserModel.fromJson(p0));
       expect(
         result.getRight(),
         ModelFailure(message: dataIsNullExeptionMsg),
@@ -92,8 +88,7 @@ void main() {
         return server.reply(200, _bodyWrongFormat);
       }, data: _body);
 
-      final Either<UserModel, Failure> result = await dioClient.post(_endPoint,
-          data: _body, decode: (p0) => UserModel.fromJson(p0));
+      final Either<UserModel, Failure> result = await dioClient.post(_endPoint, data: _body, decode: (p0) => UserModel.fromJson(p0));
       expect(
         result.getRight(),
         ModelFailure(message: parsingDataExceptionMsg),
@@ -106,8 +101,7 @@ void main() {
       dioAdapter.onGet(_endPoint, (server) {
         return server.reply(200, _body);
       }, queryParameters: _body);
-      final Either<UserModel, Failure> result = await dioClient.get(_endPoint,
-          params: _body, decode: (p0) => UserModel.fromJson(p0));
+      final Either<UserModel, Failure> result = await dioClient.get(_endPoint, params: _body, decode: (p0) => UserModel.fromJson(p0));
       expect(result.getLeft(), _testUser);
     });
 
@@ -115,8 +109,7 @@ void main() {
       dioAdapter.onGet(_endPoint, (server) {
         return server.throws(500, dioError);
       }, queryParameters: _body);
-      final Either<UserModel, Failure> result = await dioClient.get(_endPoint,
-          params: _body, decode: (p0) => UserModel.fromJson(p0));
+      final Either<UserModel, Failure> result = await dioClient.get(_endPoint, params: _body, decode: (p0) => UserModel.fromJson(p0));
       expect(
         result.getRight(),
         ServerFailure(message: dioError.message.toString()),
@@ -128,8 +121,7 @@ void main() {
         return server.reply(200, _bodyMissingData);
       }, queryParameters: _body);
 
-      final Either<UserModel, Failure> result = await dioClient.get(_endPoint,
-          params: _body, decode: (p0) => UserModel.fromJson(p0));
+      final Either<UserModel, Failure> result = await dioClient.get(_endPoint, params: _body, decode: (p0) => UserModel.fromJson(p0));
       expect(
         result.getRight(),
         ModelFailure(message: dataIsNullExeptionMsg),
@@ -140,8 +132,7 @@ void main() {
       dioAdapter.onGet(_endPoint, (server) {
         return server.reply(200, _bodyWrongFormat);
       }, queryParameters: _body);
-      final Either<UserModel, Failure> result = await dioClient.get(_endPoint,
-          params: _body, decode: (p0) => UserModel.fromJson(p0));
+      final Either<UserModel, Failure> result = await dioClient.get(_endPoint, params: _body, decode: (p0) => UserModel.fromJson(p0));
       expect(
         result.getRight(),
         ModelFailure(message: parsingDataExceptionMsg),
@@ -154,8 +145,7 @@ void main() {
       dioAdapter.onPut(_endPoint, (server) {
         return server.reply(200, _body);
       }, queryParameters: _body);
-      final Either<UserModel, Failure> result = await dioClient.put(_endPoint,
-          params: _body, decode: (p0) => UserModel.fromJson(p0));
+      final Either<UserModel, Failure> result = await dioClient.put(_endPoint, params: _body, decode: (p0) => UserModel.fromJson(p0));
       expect(result.getLeft(), _testUser);
     });
 
@@ -163,8 +153,7 @@ void main() {
       dioAdapter.onPut(_endPoint, (server) {
         return server.throws(500, dioError);
       }, queryParameters: _body);
-      final Either<UserModel, Failure> result = await dioClient.put(_endPoint,
-          params: _body, decode: (p0) => UserModel.fromJson(p0));
+      final Either<UserModel, Failure> result = await dioClient.put(_endPoint, params: _body, decode: (p0) => UserModel.fromJson(p0));
       expect(
         result.getRight(),
         ServerFailure(message: dioError.message.toString()),
@@ -176,8 +165,7 @@ void main() {
         return server.reply(200, _bodyMissingData);
       }, queryParameters: _body);
 
-      final Either<UserModel, Failure> result = await dioClient.put(_endPoint,
-          params: _body, decode: (p0) => UserModel.fromJson(p0));
+      final Either<UserModel, Failure> result = await dioClient.put(_endPoint, params: _body, decode: (p0) => UserModel.fromJson(p0));
       expect(
         result.getRight(),
         ModelFailure(message: dataIsNullExeptionMsg),
@@ -188,8 +176,7 @@ void main() {
       dioAdapter.onPut(_endPoint, (server) {
         return server.reply(200, _bodyWrongFormat);
       }, queryParameters: _body);
-      final Either<UserModel, Failure> result = await dioClient.put(_endPoint,
-          params: _body, decode: (p0) => UserModel.fromJson(p0));
+      final Either<UserModel, Failure> result = await dioClient.put(_endPoint, params: _body, decode: (p0) => UserModel.fromJson(p0));
       expect(
         result.getRight(),
         ModelFailure(message: parsingDataExceptionMsg),
@@ -201,10 +188,7 @@ void main() {
       dioAdapter.onDelete(_endPoint, (server) {
         return server.reply(200, _body);
       }, queryParameters: _body);
-      final Either<UserModel, Failure> result = await dioClient.delete(
-          _endPoint,
-          params: _body,
-          decode: (p0) => UserModel.fromJson(p0));
+      final Either<UserModel, Failure> result = await dioClient.delete(_endPoint, params: _body, decode: (p0) => UserModel.fromJson(p0));
       expect(result.getLeft(), _testUser);
     });
 
@@ -212,10 +196,7 @@ void main() {
       dioAdapter.onDelete(_endPoint, (server) {
         return server.throws(500, dioError);
       }, queryParameters: _body);
-      final Either<UserModel, Failure> result = await dioClient.delete(
-          _endPoint,
-          params: _body,
-          decode: (p0) => UserModel.fromJson(p0));
+      final Either<UserModel, Failure> result = await dioClient.delete(_endPoint, params: _body, decode: (p0) => UserModel.fromJson(p0));
       expect(
         result.getRight(),
         ServerFailure(message: dioError.message.toString()),
@@ -227,10 +208,7 @@ void main() {
         return server.reply(200, _bodyMissingData);
       }, queryParameters: _body);
 
-      final Either<UserModel, Failure> result = await dioClient.delete(
-          _endPoint,
-          params: _body,
-          decode: (p0) => UserModel.fromJson(p0));
+      final Either<UserModel, Failure> result = await dioClient.delete(_endPoint, params: _body, decode: (p0) => UserModel.fromJson(p0));
       expect(
         result.getRight(),
         ModelFailure(message: dataIsNullExeptionMsg),
@@ -241,10 +219,7 @@ void main() {
       dioAdapter.onDelete(_endPoint, (server) {
         return server.reply(200, _bodyWrongFormat);
       }, queryParameters: _body);
-      final Either<UserModel, Failure> result = await dioClient.delete(
-          _endPoint,
-          params: _body,
-          decode: (p0) => UserModel.fromJson(p0));
+      final Either<UserModel, Failure> result = await dioClient.delete(_endPoint, params: _body, decode: (p0) => UserModel.fromJson(p0));
       expect(
         result.getRight(),
         ModelFailure(message: parsingDataExceptionMsg),

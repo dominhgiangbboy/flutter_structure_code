@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter_default_structure/core/error_handler/failure_case.dart';
-import 'package:flutter_default_structure/domain/entities/user_entity.dart';
-import 'package:flutter_default_structure/domain/repository/user_repository.dart';
-import 'package:flutter_default_structure/domain/use_cases/user_info_uc.dart';
+import 'package:seltle_app/core/error_handler/failure_case.dart';
+import 'package:seltle_app/domain/entities/user_entity.dart';
+import 'package:seltle_app/domain/repository/user_repository.dart';
+import 'package:seltle_app/domain/use_cases/user_info_uc.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../mock_classes/mock_user_repository_impl.dart';
@@ -17,8 +17,7 @@ void main() {
 
     /// Test use case
     getUserInfo(idMockString).then((value) {
-      expect((value as Right).value,
-          const User(idMockString, nameMockString, emailMockString));
+      expect((value as Right).value, const User(idMockString, nameMockString, emailMockString));
     });
   });
 
