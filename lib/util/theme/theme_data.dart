@@ -40,7 +40,7 @@ class ThemeControl extends ChangeNotifier {
 
   final AppStorage storage;
   static ValueNotifier<ThemeMode> themeModeNotifier = ValueNotifier<ThemeMode>(ThemeMode.system);
-  changeMode(ThemeMode themeNode) {
+  changeMode() {
     if (themeModeNotifier.value == ThemeMode.dark) {
       storage.themeMode = ThemeMode.light;
       themeModeNotifier.value = ThemeMode.light;

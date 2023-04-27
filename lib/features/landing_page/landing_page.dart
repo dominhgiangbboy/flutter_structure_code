@@ -7,13 +7,22 @@ class LandingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color backgroundColor = Theme.of(context).colorScheme.background;
+    final ColorScheme colorScheme = Theme.of(context).colorScheme;
+    final Color backgroundColor = colorScheme.background;
+    final Color backgroudButtonColor = colorScheme.primary;
+    final Color onButtonColor = colorScheme.onPrimary;
     return Scaffold(
       backgroundColor: backgroundColor,
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        locator<ThemeControl>().changeMode(ThemeMode.dark);
-      }),
-      body: Center(
+      floatingActionButton: FloatingActionButton(
+          backgroundColor: backgroudButtonColor,
+          onPressed: () {
+            locator<ThemeControl>().changeMode();
+          },
+          child: Icon(
+            Icons.add,
+            color: onButtonColor,
+          )),
+      body: const Center(
         child: Text('Landing Page'),
       ),
     );

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:seltle_app/core/dependency_control/get_it.dart';
 import 'package:seltle_app/core/env/app_env.dart';
-import 'package:seltle_app/core/storage/storage_interface.dart';
+import 'package:seltle_app/core/routers/routers.dart';
 import 'package:seltle_app/features/landing_page/landing_page.dart';
 import 'package:seltle_app/util/theme/theme_data.dart';
 
@@ -23,7 +23,7 @@ class _MainApplicationState extends State<MainApplication> {
     return ValueListenableBuilder(
         valueListenable: ThemeControl.themeModeNotifier,
         builder: (context, value, child) {
-          return MaterialApp(
+          return MaterialApp.router(
             color: Colors.white,
             debugShowCheckedModeBanner: false,
             theme: lightThemeData,
@@ -32,7 +32,7 @@ class _MainApplicationState extends State<MainApplication> {
             themeAnimationDuration: const Duration(seconds: 1),
             darkTheme: darkTheme,
             title: 'Seltle App',
-            home: const LandingPage(),
+            routerConfig: router,
           );
         });
   }
