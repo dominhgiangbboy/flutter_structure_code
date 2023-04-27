@@ -1,4 +1,4 @@
-import 'package:flutter_default_structure/domain/entities/user_entity.dart';
+import 'package:seltle_app/domain/entities/user_entity.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

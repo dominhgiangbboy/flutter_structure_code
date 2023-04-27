@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_default_structure/data/data_source/user_remote_data_source.dart';
-import 'package:flutter_default_structure/domain/entities/user_entity.dart';
+import 'package:seltle_app/data/data_source/user_remote_data_source.dart';
+import 'package:seltle_app/domain/entities/user_entity.dart';
 
 const String _baseUrl = 'https://jsonplaceholder.typicode.com';
 const String errorString = 'Error';
@@ -26,14 +26,12 @@ class RemoteDataSourceUserMock implements RemoteUserDataSource {
 class RemoteDataSourceUserMockFailureNetwork implements RemoteUserDataSource {
   @override
   Future<User> getUserInfo(String id) async {
-    return Future.error(DioError(
-        requestOptions: RequestOptions(baseUrl: _baseUrl), error: errorString));
+    return Future.error(DioError(requestOptions: RequestOptions(baseUrl: _baseUrl), error: errorString));
   }
 
   @override
   Future<User> saveUserInfo(User user) async {
-    return Future.error(DioError(
-        requestOptions: RequestOptions(baseUrl: _baseUrl), error: errorString));
+    return Future.error(DioError(requestOptions: RequestOptions(baseUrl: _baseUrl), error: errorString));
   }
 }
 

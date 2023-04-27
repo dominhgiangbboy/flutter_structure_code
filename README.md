@@ -1,4 +1,4 @@
-# flutter_default_structure
+# seltle_app
 
 A new Flutter project.
 

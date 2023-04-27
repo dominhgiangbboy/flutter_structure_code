@@ -1,4 +1,4 @@
-package com.example.flutter_default_structure
+package com.example.seltle_app
 
 import io.flutter.embedding.android.FlutterActivity
 

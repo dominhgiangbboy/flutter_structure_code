@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter_default_structure/core/error_handler/failure_case.dart';
-import 'package:flutter_default_structure/domain/entities/user_entity.dart';
-import 'package:flutter_default_structure/domain/repository/user_repository.dart';
+import 'package:seltle_app/core/error_handler/failure_case.dart';
+import 'package:seltle_app/domain/entities/user_entity.dart';
+import 'package:seltle_app/domain/repository/user_repository.dart';
 
 // Mock data for testing
 const String idMockString = "1";
@@ -12,14 +12,12 @@ const String errorMockString = "Error";
 class MockUserRepositoryImpl implements UserRepository {
   @override
   Future<Either<Failure, User>> getUserInfo(String id) {
-    return Future.value(
-        const Right(User(idMockString, nameMockString, emailMockString)));
+    return Future.value(const Right(User(idMockString, nameMockString, emailMockString)));
   }
 
   @override
   Future<Either<Failure, User>> saveUserInfo(User user) {
-    return Future.value(
-        const Right(User(idMockString, nameMockString, emailMockString)));
+    return Future.value(const Right(User(idMockString, nameMockString, emailMockString)));
   }
 }
 
