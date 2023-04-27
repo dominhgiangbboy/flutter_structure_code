@@ -1,16 +1,6 @@
-# seltle_app
+# Flutter structure code project
 
-A new Flutter project.
+This is a project for structure code template for easy set-up a TDD clean architecture code-base.
+\*\*\* This project is equiped with: - Flavors - LightTheme and DarkTheme - Routers (go_routers) - Restful client (dio) - Local storage (Shared_preferences) - Dependencies control (get_it) - Loggers
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+\*\*\* Test method: - Unit test - Widget testing - Will add intergration test later
