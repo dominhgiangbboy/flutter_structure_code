@@ -1,3 +1,4 @@
 {
-    "dart.flutterSdkPath": "/Users/giangdm/fvm/versions/default"
+  "dart.flutterSdkPath": "/Users/giangdm/fvm/versions/default",
+  "cmake.sourceDirectory": "/Users/giang/src/flutter_structure_code/linux"
 }

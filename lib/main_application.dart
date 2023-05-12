@@ -1,8 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:seltle_app/core/dependency_control/get_it.dart';
 import 'package:seltle_app/core/env/app_env.dart';
 import 'package:seltle_app/core/routers/routers.dart';
-import 'package:seltle_app/features/landing_page/landing_page.dart';
 import 'package:seltle_app/util/theme/theme_data.dart';
 
 class MainApplication extends StatefulWidget {
@@ -48,10 +48,17 @@ class DefaultAppSettings {
 
 Future setUpApplicationDefault(Flavor flavor) async {
   WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
   await setUpInstanceLocator(flavor);
   runApp(
-    MainApplication(
-      currentThemeMode: locator<ThemeControl>(),
+    EasyLocalization(
+      supportedLocales: const [Locale('en', 'US'), Locale('vn', 'VN')],
+      path: 'assets/translations',
+      fallbackLocale: const Locale('en', 'US'),
+      useFallbackTranslations: true,
+      child: MainApplication(
+        currentThemeMode: locator<ThemeControl>(),
+      ),
     ),
   );
 }
