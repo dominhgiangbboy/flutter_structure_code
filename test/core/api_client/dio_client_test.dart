@@ -6,7 +6,7 @@ import 'package:seltle_app/core/base_models/base_response_api.dart';
 import 'package:seltle_app/core/env/app_env.dart';
 import 'package:seltle_app/core/error_handler/failure_case.dart';
 import 'package:seltle_app/core/extension/util_extension.dart';
-import 'package:seltle_app/models/user_model.dart';
+import 'package:seltle_app/data/models/user_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
 import 'package:mockito/annotations.dart';

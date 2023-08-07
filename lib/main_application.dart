@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:seltle_app/core/dependency_control/get_it.dart';
 import 'package:seltle_app/core/env/app_env.dart';
 import 'package:seltle_app/core/routers/routers.dart';
-import 'package:seltle_app/features/landing_page/landing_page.dart';
 import 'package:seltle_app/util/theme/theme_data.dart';
 
 class MainApplication extends StatefulWidget {
@@ -31,7 +30,7 @@ class _MainApplicationState extends State<MainApplication> {
             themeAnimationCurve: Curves.fastOutSlowIn,
             themeAnimationDuration: const Duration(seconds: 1),
             darkTheme: darkTheme,
-            title: 'Seltle App',
+            title: 'Quick Care Employee App',
             routerConfig: router,
           );
         });
