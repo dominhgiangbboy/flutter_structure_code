@@ -1,4 +1,4 @@
-import 'package:seltle_app/domain/entities/user_entity.dart';
+import 'package:quickcare_employee_app/domain/entities/user_entity.dart';
 
 class UserModel extends User {
   const UserModel(super.id, super.name, super.email);

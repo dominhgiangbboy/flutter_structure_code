@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:seltle_app/core/storage/storage_interface.dart';
-import 'package:seltle_app/util/colors.dart';
+import 'package:quickcare_employee_app/core/storage/storage_interface.dart';
+import 'package:quickcare_employee_app/util/colors.dart';
 
 final ThemeData lightThemeData = ThemeData(
   colorScheme: const ColorScheme(

@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:seltle_app/core/api_client/restful_client.dart';
-import 'package:seltle_app/core/base_models/base_response_api.dart';
-import 'package:seltle_app/core/error_handler/failure_case.dart';
+import 'package:quickcare_employee_app/core/api_client/restful_client.dart';
+import 'package:quickcare_employee_app/core/base_models/base_response_api.dart';
+import 'package:quickcare_employee_app/core/error_handler/failure_case.dart';
 
 class DioClient<T> implements RestfulClient<T> {
   final Dio dio;

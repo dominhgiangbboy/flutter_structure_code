@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:seltle_app/core/storage/storage_interface.dart';
+import 'package:quickcare_employee_app/core/storage/storage_interface.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPreferenceService implements AppStorage {

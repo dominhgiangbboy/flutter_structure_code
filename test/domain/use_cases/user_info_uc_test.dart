@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:seltle_app/core/error_handler/failure_case.dart';
-import 'package:seltle_app/domain/entities/user_entity.dart';
-import 'package:seltle_app/domain/repository/user_repository.dart';
-import 'package:seltle_app/domain/use_cases/user_info_uc.dart';
+import 'package:quickcare_employee_app/core/error_handler/failure_case.dart';
+import 'package:quickcare_employee_app/domain/entities/user_entity.dart';
+import 'package:quickcare_employee_app/domain/repository/user_repository.dart';
+import 'package:quickcare_employee_app/domain/use_cases/user_info_uc.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../mock_classes/mock_user_repository_impl.dart';

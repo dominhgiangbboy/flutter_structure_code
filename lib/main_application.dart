@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:seltle_app/core/dependency_control/get_it.dart';
-import 'package:seltle_app/core/env/app_env.dart';
-import 'package:seltle_app/core/routers/routers.dart';
-import 'package:seltle_app/util/theme/theme_data.dart';
+import 'package:quickcare_employee_app/core/dependency_control/get_it.dart';
+import 'package:quickcare_employee_app/core/env/app_env.dart';
+import 'package:quickcare_employee_app/core/routers/routers.dart';
+import 'package:quickcare_employee_app/util/theme/theme_data.dart';
 
 class MainApplication extends StatefulWidget {
   final ThemeControl currentThemeMode;
@@ -21,7 +21,7 @@ class _MainApplicationState extends State<MainApplication> {
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
         valueListenable: ThemeControl.themeModeNotifier,
-        builder: (context, value, child) {
+        builder: (context, ThemeMode value, child) {
           return MaterialApp.router(
             color: Colors.white,
             debugShowCheckedModeBanner: false,

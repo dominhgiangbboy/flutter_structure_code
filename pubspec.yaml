@@ -1,5 +1,5 @@
-name: seltle_app
-description: App for chia tien
+name: quickcare_employee_app
+description: An Application for QuickCare Employee
 publish_to: "none"
 version: 1.0.0+1
 environment:
@@ -34,16 +34,16 @@ flavorizr:
   flavors:
     dev:
       app:
-        name: "Chia Tiền App Dev"
+        name: "Quick Care Dev"
       android:
-        applicationId: "vn.settle.giangdm.dev"
+        applicationId: "au.quick_care.terem.dev"
       ios:
-        bundleId: "vn.settle.giangdm.dev"
+        bundleId: "au.quick_care.terem.dev"
 
     prod:
       app:
-        name: "Chia Tiền"
+        name: "Quick Care"
       android:
-        applicationId: "vn.settle.giangdm.prod"
+        applicationId: "au.quick_care.terem.prod"
       ios:
-        bundleId: "vn.settle.giangdm.prod"
+        bundleId: "au.quick_care.terem.prod"

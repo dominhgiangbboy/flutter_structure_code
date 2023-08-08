@@ -1,7 +1,7 @@
 import 'package:get_it/get_it.dart';
-import 'package:seltle_app/core/storage/shared_preferences.dart';
-import 'package:seltle_app/core/storage/storage_interface.dart';
-import 'package:seltle_app/util/theme/theme_data.dart';
+import 'package:quickcare_employee_app/core/storage/shared_preferences.dart';
+import 'package:quickcare_employee_app/core/storage/storage_interface.dart';
+import 'package:quickcare_employee_app/util/theme/theme_data.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../env/app_env.dart';

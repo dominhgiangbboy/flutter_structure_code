@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:seltle_app/data/data_source/user_remote_data_source.dart';
-import 'package:seltle_app/domain/entities/user_entity.dart';
+import 'package:quickcare_employee_app/data/data_source/user_remote_data_source.dart';
+import 'package:quickcare_employee_app/domain/entities/user_entity.dart';
 
 const String _baseUrl = 'https://jsonplaceholder.typicode.com';
 const String errorString = 'Error';

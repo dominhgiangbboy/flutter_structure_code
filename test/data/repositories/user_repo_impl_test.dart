@@ -1,8 +1,8 @@
-import 'package:seltle_app/core/error_handler/failure_case.dart';
-import 'package:seltle_app/core/extension/util_extension.dart';
-import 'package:seltle_app/data/data_source/user_remote_data_source.dart';
-import 'package:seltle_app/data/repositories/user_repo_impl.dart';
-import 'package:seltle_app/domain/repository/user_repository.dart';
+import 'package:quickcare_employee_app/core/error_handler/failure_case.dart';
+import 'package:quickcare_employee_app/core/extension/util_extension.dart';
+import 'package:quickcare_employee_app/data/data_source/user_remote_data_source.dart';
+import 'package:quickcare_employee_app/data/repositories/user_repo_impl.dart';
+import 'package:quickcare_employee_app/domain/repository/user_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../mock_classes/remote_data_user_mock.dart';

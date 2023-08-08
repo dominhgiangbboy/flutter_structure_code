@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:seltle_app/core/dependency_control/get_it.dart';
-import 'package:seltle_app/util/theme/theme_data.dart';
+import 'package:quickcare_employee_app/core/dependency_control/get_it.dart';
+import 'package:quickcare_employee_app/util/theme/theme_data.dart';
 
 class LandingPage extends StatelessWidget {
   const LandingPage({Key? key}) : super(key: key);

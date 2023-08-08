@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:seltle_app/core/error_handler/failure_case.dart';
+import 'package:quickcare_employee_app/core/error_handler/failure_case.dart';
 
 abstract class RestfulClient<T> {
   Future<Either<T, Failure>> get(String url, {required Map<String, dynamic> params, required T Function(Map<String, dynamic>) decode});
