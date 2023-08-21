@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - develop
- 
+
   workflow_dispatch:
 jobs:
   build:
@@ -30,3 +30,7 @@ jobs:
 
       - name: Build Android release
         run: flutter build apk -t lib/main_dev.dart --release --split-per-abi
+      - uses: actions/upload-artifact@v1
+        with:
+          name: release-apk
+          path: build-ci/app/outputs/apk/release/app-release.apk
