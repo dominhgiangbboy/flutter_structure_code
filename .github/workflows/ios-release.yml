@@ -1,14 +1,13 @@
 name: Android Release
 
 on:
-  push:
+  pull_request:
     branches:
       - develop
- 
   workflow_dispatch:
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     steps:
       - uses: actions/checkout@v2
