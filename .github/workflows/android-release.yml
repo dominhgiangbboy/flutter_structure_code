@@ -31,4 +31,4 @@ jobs:
         run: flutter pub get
 
       - name: Build Android release
-        run: flutter build apk -t lib/main_dev.dart --release --flavor=dev --split-per-abi
+        run: flutter build apk -t lib/main_dev.dart --release --split-per-abi
