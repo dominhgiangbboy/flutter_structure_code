@@ -3,10 +3,10 @@ name: Android Release
 on:
   push:
     branches:
-      - main
+      - develop
   pull_request:
     branches:
-      - main
+      - develop
   workflow_dispatch:
 jobs:
   build:
@@ -26,7 +26,7 @@ jobs:
           flutter-version: '3.10.6'
           channel: 'stable'
           cache: true
-          
+
       - name: Get flutter dependencies
         run: flutter pub get
       
