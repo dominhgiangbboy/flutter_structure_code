@@ -8,6 +8,10 @@ on:
       - "frontend/**"
 
   workflow_call:
+    inputs:
+      new-pubspec-version:
+        required: true
+        type: string
 
 jobs:
   validate:
@@ -15,8 +19,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - run: 'echo "current version: ${{ inputs.new-pubspec-version }}"'
 
-      
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}

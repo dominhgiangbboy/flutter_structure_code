@@ -20,6 +20,8 @@ jobs:
     uses: ./.github/workflows/analyze.yml
     secrets: inherit
     needs: gitRelease
+    with:
+      new-pubspec-version: ${{ needs.gitRelease.outputs.new_pubspec_version }}
 
   deployUat:
     name: Deploy UAT
