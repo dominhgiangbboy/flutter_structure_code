@@ -4,8 +4,6 @@
   "branches": ["feature/ci-cd-ios-flow"],
   "tagFormat": "release/dev/${version}",
   "plugins": [
-    "@semantic-release/commit-analyzer",
-    "@semantic-release/release-notes-generator",
     [
       "@semantic-release/changelog",
       {
