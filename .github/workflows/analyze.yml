@@ -8,11 +8,6 @@ on:
       - "frontend/**"
 
   workflow_call:
-    inputs:
-      flutter-version:
-        required: true
-        type: string
-        description: "Flutter version to use"
 
 jobs:
   validate:
@@ -23,7 +18,7 @@ jobs:
 
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: "${{ inputs.flutter-version }}"
+          flutter-version: $FLUTTER_VERSION
           channel: "stable"
           cache: true
 

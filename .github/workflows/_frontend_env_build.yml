@@ -37,7 +37,7 @@ on:
 jobs:
   deployAndroid:
     name: 🤖📦🚀 Build & deploy Android ${{ inputs.short-environment-name }} release
-    uses: ./.github/workflows/_deploy-android-app.yml
+    uses: ./.github/workflows/_frontend_android_app.yml
     secrets: inherit
     with:
       environment-name: ${{ inputs.android-environment-name }}

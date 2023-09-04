@@ -15,8 +15,6 @@ jobs:
     name: 📊 Analyze before build
     uses: ./.github/workflows/analyze.yml
     secrets: inherit
-    with:
-      flutter-version: "3.10.6"
 
   gitRelease:
     name: "Create Git Release"
@@ -25,7 +23,7 @@ jobs:
 
   deployUat:
     name: Deploy UAT
-    uses: ./.github/workflows/_deploy-env-apps.yml
+    uses: ./.github/workflows/_frontend_env_build.yml
     needs: gitRelease
     secrets: inherit
     with:
