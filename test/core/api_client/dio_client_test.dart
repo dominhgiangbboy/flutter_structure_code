@@ -16,10 +16,7 @@ const Map<String, dynamic> _body = {
   'message': 'success',
   'data': {'id': '1', 'name': '2', 'email': '3'}
 };
-const Map<String, dynamic> _bodyMissingMessage = {
-  'code': 200,
-  'data': {'id': '1', 'name': '2', 'email': '3'}
-};
+
 const Map<String, dynamic> _bodyWrongFormat = {
   'message': 'success',
   'code': 200,
