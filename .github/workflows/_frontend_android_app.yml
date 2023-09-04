@@ -68,7 +68,7 @@ jobs:
 
       - name: 🤖📦 Create Android ${{ inputs.short-environment-name }} appbundle release
         run: |
-          pushd app
+          pushd ./
           mkdir debug-symbols
           flutter build appbundle \
             --release \
