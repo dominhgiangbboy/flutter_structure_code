@@ -1,0 +1,69 @@
+# Ran whenever there's a change on a release-* tag. Publish Android to PlayStore and iOS to AppStore.
+name: Build and release Android application
+on:
+  workflow_call:
+    inputs:
+      environment-name:
+        required: true
+        type: string
+      flavor:
+        required: true
+        type: string
+
+jobs:
+  release-android:
+    name: Release Android
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Get keystore file
+        id: android_keystore
+        uses: timheuer/base64-to-file@v1.2
+        with:
+          fileName: upload-keystore.jks
+          encodedString: ${{ secrets.ANDROID_KEYSTORE_FILE }}
+
+      - name: Set keystore properties
+        run: |
+          echo "KEYSTORE_FILE=${{ steps.android_keystore.outputs.filePath }}" >> $GITHUB_ENV
+          echo "KEYSTORE_PASSWORD=${{ secrets.ANDROID_KEYSTORE_PASSWORD }}" >> $GITHUB_ENV
+          echo "KEY_ALIAS=${{ secrets.ANDROID_KEY_ALIAS }}" >> $GITHUB_ENV
+          echo "KEY_PASSWORD=${{ secrets.ANDROID_KEY_PASSWORD }}" >> $GITHUB_ENV
+
+      - name: Install Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: "temurin"
+          java-version: "17"
+          cache: gradle
+
+      - name: Install Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.10.6"
+          channel: "stable"
+          cache: true
+
+      - name: Get dependencies
+        working-directory: ./frontend
+        run: flutter pub get
+
+      - name: Build Appbundle
+        working-directory: ./frontend
+        run: flutter build appbundle -t lib/main_prod.dart --flavor prod --release
+
+      - name: Upload to internal testing PlayStore
+        uses: actions/upload-artifact@v2
+        with:
+          name: android-release
+          path: frontend/build/app/outputs/bundle/prodRelease/app-prod-release.aab
+
+  release-ios:
+    name: Release iOS
+    runs-on: macos-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3

@@ -1,0 +1,72 @@
+# Build Android apk and iOS ipa flavor dev release then upload to Firebase distribution
+name: Frontend Build
+on:
+  pull_request:
+    paths:
+      - "frontend/**"
+    branches:
+      - main
+  
+  workflow_dispatch:
+
+jobs:
+  build-android:
+    name: Build Android
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Get keystore file
+        id: android_keystore
+        uses: timheuer/base64-to-file@v1.2
+        with:
+          fileName: upload-keystore.jks
+          encodedString: ${{ secrets.ANDROID_KEYSTORE_FILE }}
+
+      - name: Set keystore properties
+        run: |
+          echo "KEYSTORE_FILE=${{ steps.android_keystore.outputs.filePath }}" >> $GITHUB_ENV
+          echo "KEYSTORE_PASSWORD=${{ secrets.ANDROID_KEYSTORE_PASSWORD }}" >> $GITHUB_ENV
+          echo "KEY_ALIAS=${{ secrets.ANDROID_KEY_ALIAS }}" >> $GITHUB_ENV
+          echo "KEY_PASSWORD=${{ secrets.ANDROID_KEY_PASSWORD }}" >> $GITHUB_ENV
+      
+      - name: Install Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: "temurin"
+          java-version: "17"
+          cache: gradle
+
+      - name: Install Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.10.6"
+          channel: "stable"
+          cache: true
+
+      - name: Get dependencies
+        working-directory: ./frontend
+        run: flutter pub get
+
+      - name: Get build number from current date
+        run: echo "NOW=$(date +%s)" >> $GITHUB_ENV
+
+      - name: Build
+        working-directory: ./frontend
+        run: flutter build apk -t lib/main_dev.dart --flavor dev --release --build-number=$NOW
+
+      - name: Upload to Firebase App Distribution
+        uses: wzieba/Firebase-Distribution-Github-Action@v1
+        with:
+          appId: ${{ secrets.FIREBASE_APP_ID_ANDROID_QUICKCARE_DEVEL }}
+          serviceCredentialsFileContent: ${{ secrets.FIREBASE_APP_DISTRIBUTION_CREDENTIAL_FILE_CONTENT_DEVEL }}
+          groups: quickcare-internal
+          file: frontend/build/app/outputs/flutter-apk/app-dev-release.apk
+
+  build-ios:
+    name: Build iOS
+    runs-on: macos-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3

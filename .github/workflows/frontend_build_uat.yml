@@ -1,0 +1,38 @@
+name: 📦🚀 Build & deploy UAT release
+
+permissions: write-all
+
+on:
+  push:
+    branches:
+      - "feature/ci-cd-ios-flow"
+    paths-ignore:
+      - "**.md"
+      - ".vscode/"
+
+jobs:
+  analyze_before_build:
+    name: 📊 Analyze before build
+    uses: ./.github/workflows/analyze.yml
+    secrets: inherit
+    with:
+      flutter-version: "3.10.6"
+
+  gitRelease:
+    name: "Create Git Release"
+    uses: ./.github/workflows/git_release_versioning.yml
+    needs: analyze_before_build
+
+  deployUat:
+    name: Deploy UAT
+    uses: ./.github/workflows/_deploy-env-apps.yml
+    needs: gitRelease
+    secrets: inherit
+    with:
+      android-environment-name: "Android DEV"
+      android-environment-url: "https://play.google.com/console/u/0/developers/7200533445067191438/app/4975719898219218293/tracks/internal-testing"
+      android-package-name: "com.quickcare.hr.dev"
+      android-release-status: "completed"
+      short-environment-name: "DEV"
+      flavor: "dev"
+      new-pubspec-version: ${{ needs.gitRelease.outputs.new_pubspec_version }}
