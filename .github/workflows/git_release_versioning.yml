@@ -31,7 +31,7 @@ jobs:
       - name: 📝 Calculate complete UAT version for next version
         id: get_new_pubspec_version
         run: |
-          last_uat_release=$(echo "${{ steps.get_latest_uat_release.outputs.tag }}" | sed -E "s/release\/dev\/(.*)/\1/")
+          last_uat_release=$(echo "${{ steps.get_latest_dev_release.outputs.tag }}" | sed -E "s/release\/dev\/(.*)/\1/")
           next_pubspec_version=$(./scripts/semver.sh "$last_uat_release" "${{ steps.semantic_release_info.outputs.new_release_version }}")
           echo "next_pubspec_version=$next_pubspec_version" >> $GITHUB_OUTPUT
       - name: 🏷️✍️ Create new UAT release tag

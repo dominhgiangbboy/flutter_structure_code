@@ -11,15 +11,15 @@ on:
       - ".vscode/"
 
 jobs:
+  gitRelease:
+    name: "Create Git Release"
+    uses: ./.github/workflows/git_release_versioning.yml
+
   analyze_before_build:
     name: 📊 Analyze before build
     uses: ./.github/workflows/analyze.yml
     secrets: inherit
-
-  gitRelease:
-    name: "Create Git Release"
-    uses: ./.github/workflows/git_release_versioning.yml
-    needs: analyze_before_build
+    needs: gitRelease
 
   deployUat:
     name: Deploy UAT
