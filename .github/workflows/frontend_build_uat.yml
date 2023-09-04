@@ -11,22 +11,22 @@ on:
       - ".vscode/"
 
 jobs:
-  gitRelease:
+  git_release:
     name: "Create Git Release"
     uses: ./.github/workflows/git_release_versioning.yml
 
   print_my_var:
-    needs: gitRelease
+    needs: git_release
     runs-on: ubuntu-latest
     steps:
       - name: "Print my_var"
-        run: echo my_var [${{needs.gitRelease.outputs.new_pubspec_version}}]
+        run: echo my_var [${{ env.CURRENT_VERSION }}]
 
   analyze_before_build:
     name: 📊 Analyze before build
     uses: ./.github/workflows/analyze.yml
     secrets: inherit
-    needs: gitRelease
+    needs: git_release
     with:
       new-pubspec-version: ${{ needs.gitRelease.outputs.new_pubspec_version }}
 

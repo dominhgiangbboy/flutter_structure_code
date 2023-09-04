@@ -5,8 +5,6 @@ jobs:
   gitRelease:
     name: Create git release for UAT app
     runs-on: ubuntu-latest
-    outputs:
-      new_pubspec_version: "${{ steps.get_new_pubspec_version.outputs.next_pubspec_version }}"
     steps:
       - name: ⬇️ Checkout repository with tags
         uses: actions/checkout@v3
@@ -32,7 +30,7 @@ jobs:
           last_dev_release=$(echo "${{ steps.get_latest_dev_release.outputs.tag }}" | sed -E "s/release\/dev\/(.*)/\1/")
           next_pubspec_version=$(./scripts/semver.sh "$last_prod_release" "${{ steps.semantic_release_info.outputs.new_release_version }}")
           sed -Ei "s/^version: (.*)/version: $next_pubspec_version/" ./pubspec.yaml
-          echo "next_pubspec_version=$next_pubspec_version" >> $GITHUB_OUTPUT
+          echo "CURRENT_VERSION=$next_pubspec_version" >> $GITHUB_ENV
 
       - name: 🔀 Push bump commit with changelog to repository
         uses: stefanzweifel/git-auto-commit-action@v4.16.0
