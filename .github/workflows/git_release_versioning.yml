@@ -38,10 +38,10 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v4.16.0
         with:
           commit_message: "chore(*): bump to version ${{ steps.get_new_pubspec_version.outputs.next_pubspec_version }} [skip ci]"
-      - name: 🏷️✍️ Create new UAT release tag
+      - name: 🏷️✍️ Create new DEV release tag
         uses: rickstaa/action-create-tag@v1
         with:
-          tag: "release/uat/${{ steps.get_new_pubspec_version.outputs.next_pubspec_version }}"
-          message: "UAT release ${{ steps.get_new_pubspec_version.outputs.next_pubspec_version }}"
+          tag: "release/dev/${{ steps.get_new_pubspec_version.outputs.next_pubspec_version }}"
+          message: "DEV release ${{ steps.get_new_pubspec_version.outputs.next_pubspec_version }}"
           github_token: ${{ secrets.RELEASE_AUTOMATOR_PAT }}
           tag_exists_error: false
