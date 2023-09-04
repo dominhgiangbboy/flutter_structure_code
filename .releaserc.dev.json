@@ -2,7 +2,7 @@
   "ci": true,
   "dryRun": true,
   "branches": ["main"],
-  "tagFormat": "release/prod/${version}",
+  "tagFormat": "release/dev/${version}",
   "plugins": [
     "@semantic-release/commit-analyzer",
     "@semantic-release/release-notes-generator",
