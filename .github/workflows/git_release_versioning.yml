@@ -13,14 +13,14 @@ jobs:
         with:
           fetch-depth: 0
       - name: 🏷️🧪 Get latest UAT release
-        id: get_latest_uat_release
+        id: get_latest_dev_release
         uses: "WyriHaximus/github-action-get-previous-tag@v1"
         with:
-          prefix: "release/uat/"
+          prefix: "release/dev/"
           fallback: 0.0.1
       - name: ⚙️ Prepare semantic release configuration
         run: |
-          mv .releaserc.uat.json .releaserc.json
+          mv .releaserc.dev.json .releaserc.json
       - name: 🏷️🔮 Get next UAT release semver version
         id: semantic_release_info
         uses: cycjimmy/semantic-release-action@v3.2.0
