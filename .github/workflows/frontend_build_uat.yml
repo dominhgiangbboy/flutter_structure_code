@@ -15,6 +15,13 @@ jobs:
     name: "Create Git Release"
     uses: ./.github/workflows/git_release_versioning.yml
 
+  print_my_var:
+    needs: gitRelease
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Print my_var"
+        run: echo my_var [${{needs.gitRelease.outputs.new_pubspec_version}}]
+
   analyze_before_build:
     name: 📊 Analyze before build
     uses: ./.github/workflows/analyze.yml
