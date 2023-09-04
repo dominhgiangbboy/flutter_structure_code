@@ -1,7 +1,7 @@
 {
   "ci": true,
   "dryRun": true,
-  "branches": ["main"],
+  "branches": ["feature/ci-cd-ios-flow"],
   "tagFormat": "release/dev/${version}",
   "plugins": [
     "@semantic-release/commit-analyzer",
