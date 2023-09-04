@@ -19,6 +19,7 @@ jobs:
   gitRelease:
     name: "Create Git Release"
     uses: ./.github/workflows/git_release_versioning.yml
+    needs: analyze_before_build
 
   deployUat:
     name: Deploy UAT
