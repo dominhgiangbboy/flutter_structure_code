@@ -33,7 +33,7 @@ jobs:
   deployUat:
     name: Deploy UAT
     uses: ./.github/workflows/_frontend_env_build.yml
-    needs: ["gitRelease", "analyze_before_build"]
+    needs: ["git_release", "analyze_before_build"]
     secrets: inherit
     with:
       android-environment-name: "Android DEV"
