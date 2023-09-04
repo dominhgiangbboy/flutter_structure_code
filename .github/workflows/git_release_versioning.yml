@@ -33,7 +33,7 @@ jobs:
         run: |
           last_dev_release=$(echo "${{ steps.get_latest_dev_release.outputs.tag }}" | sed -E "s/release\/dev\/(.*)/\1/")
           next_pubspec_version=$(./scripts/semver.sh "$last_prod_release" "${{ steps.semantic_release_info.outputs.new_release_version }}")
-          sed -Ei "s/^version: (.*)/version: $next_pubspec_version/" app/pubspec.yaml
+          sed -Ei "s/^version: (.*)/version: $next_pubspec_version/" ./pubspec.yaml
           echo "next_pubspec_version=$next_pubspec_version" >> $GITHUB_OUTPUT
 
       - name: 🔀 Push bump commit with changelog to repository
