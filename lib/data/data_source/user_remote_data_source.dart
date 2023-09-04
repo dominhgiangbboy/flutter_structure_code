@@ -1,3 +1,5 @@
+// ignore_for_file: unused_field
+
 import 'package:quickcare_employee_app/core/api_client/restful_client.dart';
 
 import '../../domain/entities/user_entity.dart';
